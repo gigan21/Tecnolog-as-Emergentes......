@@ -7,13 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    // Mostrar formulario de login
     public function showLogin()
     {
         return view('auth.login');
     }
 
-    // Procesar login
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -22,8 +20,8 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate(); // Previene ataques de sesión
-            return redirect()->intended('/dashboard'); // Redirige al dashboard
+            $request->session()->regenerate();
+            return redirect()->intended('/dashboard');
         }
 
         return back()->withErrors([
@@ -31,7 +29,6 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
-    // Cerrar sesión
     public function logout(Request $request)
     {
         Auth::logout();
@@ -40,4 +37,3 @@ class AuthController extends Controller
         return redirect('/login');
     }
 }
-
