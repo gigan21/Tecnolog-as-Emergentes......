@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User; // Importa el modelo de usuario
 use Illuminate\Support\Facades\Hash; // Importa la fachada de Hash
 
+
 Route::get('/', function () {
     return view('welcome');
 });
